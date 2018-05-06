@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sebasku.networks.R;
-import com.sebasku.networks.session.sessionManager;
+import com.sebasku.networks.session.SessionManager;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -76,7 +76,7 @@ public class MenuActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sessionManager sessionlogout = new sessionManager(getApplicationContext());
+                SessionManager sessionlogout = new SessionManager(getApplicationContext());
                 sessionlogout.logoutUser();
             }
         });

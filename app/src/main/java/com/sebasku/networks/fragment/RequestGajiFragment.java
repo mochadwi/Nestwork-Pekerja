@@ -6,16 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.sebasku.networks.R;
 import com.sebasku.networks.api.UtilsApi;
-import com.sebasku.networks.apimodel.RequestCutiForm;
 import com.sebasku.networks.apimodel.RequestGajiForm;
-import com.sebasku.networks.apimodel.ResponseAjukanCuti;
 import com.sebasku.networks.apimodel.ResponseAjukanSlipGaji;
-import com.sebasku.networks.session.sessionManager;
+import com.sebasku.networks.session.SessionManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,7 +21,7 @@ import retrofit2.Response;
 public class RequestGajiFragment extends Fragment {
     View requestGaji;
     Button btnGaji;
-    sessionManager session;
+    SessionManager session;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -40,7 +37,7 @@ public class RequestGajiFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                session = new sessionManager(getContext());
+                session = new SessionManager(getContext());
                 String email = session.getEmail();
                 String waktu ="02-02-1996";
                 String status = "0";
@@ -60,7 +57,7 @@ public class RequestGajiFragment extends Fragment {
     public void saveGaji(String email,String waktu,String status, String gaji) {
         RequestGajiForm gajihan = new RequestGajiForm(email,waktu,status,gaji);
         // User responsesId = response.body().getUser();
-        session = new sessionManager(getContext());
+        session = new SessionManager(getContext());
         String token = session.getAccesToken();
         Toast.makeText(getActivity(), "ini token : " + token, Toast.LENGTH_SHORT).show();
         String b = "Bearer ";

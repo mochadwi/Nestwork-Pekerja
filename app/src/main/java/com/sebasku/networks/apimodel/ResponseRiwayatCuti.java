@@ -9,6 +9,19 @@ import com.google.gson.annotations.SerializedName;
 
 public class ResponseRiwayatCuti {
 
+
+/*    "respons": 0,
+            "status": 0,
+            "_id": "5aec1fc26f1f842598913a65",
+            "email": "tania@gmail.com",
+            "keterangan": "hmmmmmmmmmmmmmmmm",
+            "nama": "fadli",
+            "createdAt": "2018-05-04T08:54:26.597Z",
+            "updatedAt": "2018-05-04T08:54:26.597Z",
+            "__v": 0*/
+    @SerializedName("respons")
+    @Expose
+    private String respons;
     @SerializedName("status")
     @Expose
     private String status;
@@ -27,6 +40,9 @@ public class ResponseRiwayatCuti {
     @SerializedName("keterangan")
     @Expose
     private String keterangan;
+    @SerializedName("nama")
+    @Expose
+    private String nama;
     @SerializedName("createdAt")
     @Expose
     private String createdAt;
@@ -37,16 +53,27 @@ public class ResponseRiwayatCuti {
     @Expose
     private int v;
 
-    public ResponseRiwayatCuti(String status, String id, String email, String awalCuti, String akhirCuti, String keterangan, String createdAt, String updatedAt, int v) {
+    public ResponseRiwayatCuti(String respons, String status, String id, String email, String awalCuti, String akhirCuti, String keterangan, String nama, String createdAt, String updatedAt, int v) {
+        this.respons = respons;
         this.status = status;
         this.id = id;
         this.email = email;
         this.awalCuti = awalCuti;
         this.akhirCuti = akhirCuti;
         this.keterangan = keterangan;
+        this.nama = nama;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.v = v;
+    }
+
+
+    public String getRespons() {
+        return respons;
+    }
+
+    public void setRespons(String respons) {
+        this.respons = respons;
     }
 
     public String getStatus() {
@@ -95,6 +122,14 @@ public class ResponseRiwayatCuti {
 
     public void setKeterangan(String keterangan) {
         this.keterangan = keterangan;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 
     public String getCreatedAt() {

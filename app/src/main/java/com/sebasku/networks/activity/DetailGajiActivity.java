@@ -10,7 +10,7 @@ import com.sebasku.networks.R;
 
 public class DetailGajiActivity extends AppCompatActivity {
 
-    TextView sesi,gaji,posisi,jumTask,nama;
+    TextView sesi,gaji,posisi,jumTask,nama,email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +22,7 @@ public class DetailGajiActivity extends AppCompatActivity {
         init();
         String mSesi = intent.getStringExtra("sesi");
         String mNama = intent.getStringExtra("nama");
+        String mEmail = intent.getStringExtra("email");
         String mPosisi = intent.getStringExtra("posisi");
         String mTask = intent.getStringExtra("task");
         String mGaji = intent.getStringExtra("gaji");
@@ -31,6 +32,7 @@ public class DetailGajiActivity extends AppCompatActivity {
         posisi.setText(mPosisi);
         jumTask.setText(mTask);
         gaji.setText(mGaji);
+        email.setText(mEmail);
 
     }
 
@@ -50,5 +52,7 @@ public class DetailGajiActivity extends AppCompatActivity {
         posisi = findViewById(R.id.tv_posisi);
         jumTask = findViewById(R.id.tv_jum_task);
         gaji = findViewById(R.id.tv_jum_gaji);
+        email = findViewById(R.id.tv_email_detail_gaji);
+
     }
 }

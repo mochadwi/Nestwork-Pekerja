@@ -9,21 +9,23 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.sebasku.networks.R;
+import com.sebasku.networks.apimodel.ResponseRiwayatCuti;
 import com.sebasku.networks.model.RiwayatCuti;
 
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by fadil on 3/17/18.
  */
 
 public class RiwayatCutiAdapter extends RecyclerView.Adapter<RiwayatCutiAdapter.ListCutiViewHolder> {
-    private LinkedList<RiwayatCuti> listCuti;
+    private List<ResponseRiwayatCuti> listCuti;
     //deklarasi global variabel
     private Context context;
 
     //konstruktor untuk menerima data adapter
-    public RiwayatCutiAdapter(Context context, LinkedList<RiwayatCuti> listCuti) {
+    public RiwayatCutiAdapter(Context context, List<ResponseRiwayatCuti> listCuti) {
         this.context = context;
         this.listCuti = listCuti;
     }
@@ -42,7 +44,7 @@ public class RiwayatCutiAdapter extends RecyclerView.Adapter<RiwayatCutiAdapter.
     //bind view holder berfungsi untuk set data ke view yang ditampilkan pada list item
     @Override
     public void onBindViewHolder(ListCutiViewHolder holder, int position) {
-        final RiwayatCuti mCurrent = listCuti.get(position);
+        final ResponseRiwayatCuti mCurrent = listCuti.get(position);
         holder.awalCuti.setText(mCurrent.getAwalCuti());
         //holder.tlAwalCuti.setText("Awal Cuti : ");
         holder.akhirCuti.setText(mCurrent.getAkhirCuti());

@@ -12,7 +12,7 @@ import com.sebasku.networks.R;
 import com.sebasku.networks.api.UtilsApi;
 import com.sebasku.networks.apimodel.Profile;
 import com.sebasku.networks.apimodel.ResponseProfile;
-import com.sebasku.networks.session.sessionManager;
+import com.sebasku.networks.session.SessionManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,7 +51,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void getProfile() {
-        sessionManager session = new sessionManager(getApplicationContext());
+        SessionManager session = new SessionManager(getApplicationContext());
         String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjM4MzI4MjEsImlhdCI6MTUyMzIzMjgyMSwic3ViIjoiNWFjOGI3M2JhMzY2OTQxMTk2YjE1ZDRkIn0.rPWFhWY5xUOl19PT2v9b1HOXeAE2Y2VpdH48evuYctw";
         //String token = session.getAccesToken().toString();
         Profile profile = new Profile(token);

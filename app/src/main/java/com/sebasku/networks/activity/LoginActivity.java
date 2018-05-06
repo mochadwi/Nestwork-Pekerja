@@ -15,7 +15,7 @@ import com.sebasku.networks.apimodel.LoginForm;
 import com.sebasku.networks.apimodel.ResponseLogin;
 import com.sebasku.networks.apimodel.Token;
 import com.sebasku.networks.apimodel.User;
-import com.sebasku.networks.session.sessionManager;
+import com.sebasku.networks.session.SessionManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,7 +24,7 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
     Button Login;
     String accesId;
-    sessionManager session;
+    SessionManager session;
     BaseApiService apiService;
     EditText username, password;
     String mUsername, mPassword;
@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         initialized();
         actionClicked();
-        session = new sessionManager(getApplicationContext());
+        session = new SessionManager(getApplicationContext());
         if (session.isLoggedIn()) {
             startActivity(new Intent(getApplicationContext(), MenuActivity.class));
         }
@@ -73,11 +73,14 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     User responsesId = response.body().getUser();
                     User responsesNama = response.body().getUser();
+                    User responsesPosisi = response.body().getUser();
                     Token responsesToken = response.body().getToken();
                     String token = responsesToken.getAccessToken();
                     String id = responsesId.getId();
                     String email = responsesId.getEmail();
                     String nama = responsesNama.getNama();
+                    String posisi = responsesPosisi.getPosisi();
+                    session.createPosisiSession(posisi);
                     session.createIdSession(id);
                     session.createEmailSession(email);
                     session.createLoginSession(token);

@@ -12,21 +12,24 @@ import android.widget.TextView;
 
 import com.sebasku.networks.R;
 import com.sebasku.networks.activity.DetailGajiActivity;
+import com.sebasku.networks.apimodel.ResponseRiwayatGaji;
 import com.sebasku.networks.model.RiwayatGaji;
+import com.sebasku.networks.session.SessionManager;
 
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by fadil on 3/19/18.
  */
 
 public class RiwayatGajiAdapter extends RecyclerView.Adapter<RiwayatGajiAdapter.ListGajiViewHolder> {
-    private LinkedList<RiwayatGaji> listGaji;
+    private List<ResponseRiwayatGaji> listGaji;
     //deklarasi global variabel
     private Context context;
 
     //konstruktor untuk menerima data adapter
-    public RiwayatGajiAdapter(Context context, LinkedList<RiwayatGaji> listGaji) {
+    public RiwayatGajiAdapter(Context context, List<ResponseRiwayatGaji> listGaji) {
         this.context = context;
         this.listGaji = listGaji;
     }
@@ -45,17 +48,25 @@ public class RiwayatGajiAdapter extends RecyclerView.Adapter<RiwayatGajiAdapter.
     //bind view holder berfungsi untuk set data ke view yang ditampilkan pada list item
     @Override
     public void onBindViewHolder(ListGajiViewHolder holder, int position) {
-        final RiwayatGaji mCurrent = listGaji.get(position);
-        holder.sesi.setText(mCurrent.getSesi());
+        final ResponseRiwayatGaji mCurrent = listGaji.get(position);
+        holder.sesi.setText(mCurrent.getEmail());
+        final SessionManager session = new SessionManager(context);
+        final String nama = session.getNama();
+        final String posisi = session.getPosisi();
+        final String email = session.getEmail();
+        final String task ="8";
+        final String gaji ="1200000";
+        final String sesi ="1";
         holder.btnDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i =new Intent(context, DetailGajiActivity.class);
-                i.putExtra("sesi",mCurrent.getSesi());
-                i.putExtra("nama",mCurrent.getNama());
-                i.putExtra("posisi",mCurrent.getPosisi());
-                i.putExtra("task",mCurrent.getJumlahTask());
-                i.putExtra("gaji",mCurrent.getTotalGaji());
+                i.putExtra("sesi",sesi);
+                i.putExtra("nama",nama);
+                i.putExtra("email",email);
+                i.putExtra("posisi",posisi);
+                i.putExtra("task",task);
+                i.putExtra("gaji",gaji);
                 context.startActivity(new Intent(i));
             }
         });

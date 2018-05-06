@@ -3,11 +3,16 @@ package com.sebasku.networks.api;
 import com.sebasku.networks.apimodel.RequestCutiForm;
 import com.sebasku.networks.apimodel.LoginForm;
 import com.sebasku.networks.apimodel.RequestGajiForm;
+import com.sebasku.networks.apimodel.RequestPresentForm;
 import com.sebasku.networks.apimodel.ResponseAjukanCuti;
 import com.sebasku.networks.apimodel.ResponseAjukanSlipGaji;
 import com.sebasku.networks.apimodel.ResponseLogin;
+import com.sebasku.networks.apimodel.ResponsePresent;
 import com.sebasku.networks.apimodel.ResponseProfile;
 import com.sebasku.networks.apimodel.ResponseRiwayatCuti;
+import com.sebasku.networks.apimodel.ResponseRiwayatGaji;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -35,9 +40,15 @@ public interface BaseApiService {
     Call<ResponseAjukanCuti> addCuti(@Header("Authorization") String Authorization,@Body RequestCutiForm cuti);
 
     @GET("api/cuti/getOneCuti/{email}")
-    Call<ResponseRiwayatCuti>getOneCuti(@Header("Authorization") String Authorization, @Path("email") String email);
+    Call<List<ResponseRiwayatCuti>> getOneCuti(@Header("Authorization") String Authorization, @Path("email") String email);
+
+    @GET("api/slipGaji/getAllSlipGaji")
+    Call<List<ResponseRiwayatGaji>> getAllGaji(@Header("Authorization") String Authorization);
 
     @POST("api/slipGaji/ajukanSlipGaji")
     Call<ResponseAjukanSlipGaji> addGaji(@Header("Authorization") String Authorization, @Body RequestGajiForm gaji);
+
+    @POST("api/present/addPresent")
+    Call<ResponsePresent> addPresent(@Header("Authorization") String Authorization, @Body RequestPresentForm present);
 
 }

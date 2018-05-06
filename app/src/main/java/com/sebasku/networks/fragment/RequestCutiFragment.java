@@ -13,7 +13,7 @@ import com.sebasku.networks.R;
 import com.sebasku.networks.api.UtilsApi;
 import com.sebasku.networks.apimodel.RequestCutiForm;
 import com.sebasku.networks.apimodel.ResponseAjukanCuti;
-import com.sebasku.networks.session.sessionManager;
+import com.sebasku.networks.session.SessionManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,7 +24,7 @@ public class RequestCutiFragment extends Fragment {
     Button requestCuti;
     EditText awalCuti, akhirCuti, keterangan, email;
     String mAwalCuti, mAkhirCuti, mKeterangan, mEmail;
-    sessionManager session ;
+    SessionManager session ;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class RequestCutiFragment extends Fragment {
                 mKeterangan = keterangan.getText().toString();
                 String respons = "0";
                 String status = "0";
-                session = new sessionManager(getContext());
+                session = new SessionManager(getContext());
                 String nama = session.getNama();
                 String mEmail = session.getEmail();
                 saveCuti(mEmail,nama, mAwalCuti, mAkhirCuti, mKeterangan,respons,status);
@@ -59,7 +59,7 @@ public class RequestCutiFragment extends Fragment {
     public void saveCuti(String email,String nama, String awalCuti, String akhirCuti, String keterangan,String respons,String status) {
         RequestCutiForm cuti = new RequestCutiForm(email,nama, awalCuti, akhirCuti, keterangan,respons,status);
        // User responsesId = response.body().getUser();
-        session = new sessionManager(getContext());
+        session = new SessionManager(getContext());
         String token = session.getAccesToken();
         Toast.makeText(getActivity(), "ini token : "+token, Toast.LENGTH_SHORT).show();
         String b = "Bearer ";
