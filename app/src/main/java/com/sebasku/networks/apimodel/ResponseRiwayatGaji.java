@@ -5,17 +5,22 @@ import com.google.gson.annotations.SerializedName;
 
 public class ResponseRiwayatGaji {
 
-    /*            "status": "0",
-                        "_id": "5aec28556f1f842598913a6a",
-                        "email": "tsani@gmail.com",
-                        "waktu": "1996-08-01T17:00:00.000Z",
-                        "gaji": 0,
-                        "createdAt": "2018-05-04T09:31:01.068Z",
-                        "updatedAt": "2018-05-04T09:31:01.068Z",
-                        "__v": 0*/
+/*     "status": "0",
+             "jumlahTask": 0,
+             "_id": "5af2e07ceb5c971fe04b283b",
+             "email": "tsani@gmail.com",
+             "gaji": 0,
+             "waktu": "1996-02-01T17:00:00.000Z",
+             "createdAt": "2018-05-09T11:50:20.170Z",
+             "updatedAt": "2018-05-09T11:50:20.170Z",
+             "__v": 0*/
+
     @SerializedName("status")
     @Expose
     private String status;
+    @SerializedName("jumlahTask")
+    @Expose
+    private String jumlahTask;
     @SerializedName("_id")
     @Expose
     private String id;
@@ -38,8 +43,9 @@ public class ResponseRiwayatGaji {
     @Expose
     private int v;
 
-    public ResponseRiwayatGaji(String status, String id, String email, String waktu, String gaji, String createdAt, String updatedAt, int v) {
+    public ResponseRiwayatGaji(String status, String jumlahTask, String id, String email, String waktu, String gaji, String createdAt, String updatedAt, int v) {
         this.status = status;
+        this.jumlahTask = jumlahTask;
         this.id = id;
         this.email = email;
         this.waktu = waktu;
@@ -55,6 +61,14 @@ public class ResponseRiwayatGaji {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getJumlahTask() {
+        return jumlahTask;
+    }
+
+    public void setJumlahTask(String jumlahTask) {
+        this.jumlahTask = jumlahTask;
     }
 
     public String getId() {

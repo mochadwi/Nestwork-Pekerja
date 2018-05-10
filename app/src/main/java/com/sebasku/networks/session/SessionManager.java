@@ -36,6 +36,7 @@ public class SessionManager {
     public static final String KEY_EMAIL = "EMAIL";
     public static final String KEY_NAMA = "NAMA";
     public static final String KEY_POSISI = "POSISI";
+    public static final String KEY_NOHP = "NOHP";
 
 
     // Constructor
@@ -98,6 +99,17 @@ public class SessionManager {
 
         // Storing name in pref
         editor.putString(KEY_POSISI, posisi);
+
+        // commit changes
+        editor.commit();
+    }
+
+    public void createNoHpSession(String noHp){
+        // Storing login value as TRUE
+        editor.putBoolean(IS_LOGIN, true);
+
+        // Storing name in pref
+        editor.putString(KEY_NOHP, noHp);
 
         // commit changes
         editor.commit();
@@ -174,6 +186,12 @@ public class SessionManager {
         String accesPosisi = pref.getString(KEY_POSISI, "missing");
 
         return accesPosisi;
+    }
+
+    public String getNoHp(){
+        String accesNoHp = pref.getString(KEY_NOHP, "missing");
+
+        return accesNoHp;
     }
 
     /**

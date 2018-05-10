@@ -22,13 +22,24 @@
             app:civ_border_width="@dimen/cardview_default_radius" />
 
         <TextView
+            android:id="@+id/tv_nama_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:text="PT.Creativa Gemilang"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_email_company"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="20dp"
-            android:text="PT.Creativa Gemilang"
+            android:text="Nestyard@gmail.com"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
@@ -50,6 +61,7 @@
                     android:textSize="@dimen/textSize_profilPerusahaan_tvJudul" />
 
                 <TextView
+                    android:id="@+id/tv_profil_company"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/isi_profil" />
@@ -76,12 +88,11 @@
                     android:textSize="@dimen/textSize_profilPerusahaan_tvJudul" />
 
                 <TextView
+                    android:id="@+id/tv_peraturan_company"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/isi_peraturan" />
             </LinearLayout>
         </android.support.v7.widget.CardView>
-
     </LinearLayout>
-
 </ScrollView>

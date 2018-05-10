@@ -7,7 +7,17 @@ import com.google.gson.annotations.SerializedName;
  * Created by fadil on 4/1/18.
  */
 
+/*    "id": "5af2c3795d49690fc9540a2f",
+            "email": "tsani@gmail.com",
+            "nama": "fadli",
+            "posisi": "Android Developer",
+            "noHp": "0897867434",
+            "picture": {},
+            "role": "user",
+            "createdAt": "2018-05-09T09:46:34.008Z"*/
+
 public class ResponseProfile {
+
         @SerializedName("id")
         @Expose
         private String id;
@@ -23,76 +33,76 @@ public class ResponseProfile {
         @SerializedName("noHp")
         @Expose
         private String noHp;
-        @SerializedName("gaji")
+        @SerializedName("role")
         @Expose
-        private Integer gaji;
+        private String role;
         @SerializedName("createdAt")
         @Expose
         private String createdAt;
 
-    public ResponseProfile(String id, String email, String nama, String posisi, String noHp, Integer gaji, String createdAt) {
+    public ResponseProfile(String id, String email, String nama, String posisi, String noHp, String role, String createdAt) {
         this.id = id;
         this.email = email;
         this.nama = nama;
         this.posisi = posisi;
         this.noHp = noHp;
-        this.gaji = gaji;
+        this.role = role;
         this.createdAt = createdAt;
     }
 
     public String getId() {
-        return id;
-    }
+            return id;
+        }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+        public void setId(String id) {
+            this.id = id;
+        }
 
-    public String getEmail() {
-        return email;
-    }
+        public String getEmail() {
+            return email;
+        }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+        public void setEmail(String email) {
+            this.email = email;
+        }
 
-    public String getNama() {
-        return nama;
-    }
+        public String getNama() {
+            return nama;
+        }
 
-    public void setNama(String nama) {
-        this.nama = nama;
-    }
+        public void setNama(String nama) {
+            this.nama = nama;
+        }
 
-    public String getPosisi() {
-        return posisi;
-    }
+        public String getPosisi() {
+            return posisi;
+        }
 
-    public void setPosisi(String posisi) {
-        this.posisi = posisi;
-    }
+        public void setPosisi(String posisi) {
+            this.posisi = posisi;
+        }
 
-    public String getNoHp() {
-        return noHp;
-    }
+        public String getNoHp() {
+            return noHp;
+        }
 
-    public void setNoHp(String noHp) {
-        this.noHp = noHp;
-    }
+        public void setNoHp(String noHp) {
+            this.noHp = noHp;
+        }
 
-    public Integer getGaji() {
-        return gaji;
-    }
+        public String getRole() {
+            return role;
+        }
 
-    public void setGaji(Integer gaji) {
-        this.gaji = gaji;
-    }
+        public void setRole(String role) {
+            this.role = role;
+        }
 
-    public String getCreatedAt() {
-        return createdAt;
-    }
+        public String getCreatedAt() {
+            return createdAt;
+        }
 
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
+        public void setCreatedAt(String createdAt) {
+            this.createdAt = createdAt;
+        }
 }

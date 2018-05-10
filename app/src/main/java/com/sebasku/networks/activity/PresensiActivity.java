@@ -24,12 +24,13 @@ import retrofit2.Response;
 
 public class PresensiActivity extends AppCompatActivity {
     RadioGroup rg;
-    EditText backlog,task,note;
+    EditText backlog, task, note;
     Button submit;
     int selectedId;
-    String mBacklog,mTask,mNote,nama,email;
+    String mBacklog, mTask, mNote, nama, email;
     String mRb;
     SessionManager session;
+    String mStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,28 +43,36 @@ public class PresensiActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedId = rg .getCheckedRadioButtonId();
+                session = new SessionManager(getApplicationContext());
+                selectedId = rg.getCheckedRadioButtonId();
                 RadioButton radioButton = (RadioButton) findViewById(selectedId);
                 mRb = radioButton.getText().toString();
-                Toast.makeText(PresensiActivity.this, mRb, Toast.LENGTH_SHORT).show();
+                if (mRb.equals("Will Do")) {
+                    mStatus = "0";
+                } else if (mRb.equals("Did/Done")) {
+                    mStatus = "1";
+                } else if (mRb.equals("Obstacle")) {
+                    mStatus = "2";
+                }
+                Toast.makeText(PresensiActivity.this, mStatus, Toast.LENGTH_SHORT).show();
                 mBacklog = backlog.getText().toString();
                 mTask = task.getText().toString();
                 mNote = note.getText().toString();
                 nama = session.getNama();
                 email = session.getEmail();
-                savePresent(email,nama,mBacklog,mRb,mTask,mNote);
+                savePresent(email, nama, mBacklog, mStatus, mTask, mNote);
             }
         });
     }
 
-    public void savePresent(String email,String nama,String backlog,String mRb,String task,String note) {
-        RequestPresentForm present = new RequestPresentForm(email,nama,backlog,mRb,task,note);
+    public void savePresent(String email, String nama, String backlog, String mRb, String task, String note) {
+        RequestPresentForm present = new RequestPresentForm(email, nama, backlog, mRb, task, note);
         // User responsesId = response.body().getUser();
         session = new SessionManager(getApplicationContext());
         String token = session.getAccesToken();
-        Toast.makeText(PresensiActivity.this, "ini token : "+token, Toast.LENGTH_SHORT).show();
+        Toast.makeText(PresensiActivity.this, "ini token : " + token, Toast.LENGTH_SHORT).show();
         String b = "Bearer ";
-        String tokenize = b+token;
+        String tokenize = b + token;
         Call<ResponsePresent> call = UtilsApi.getAPIService().addPresent(tokenize, present);
 
         call.enqueue(new Callback<ResponsePresent>() {
@@ -92,11 +101,11 @@ public class PresensiActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void init(){
-         rg = findViewById(R.id.rg_status);
-         backlog = findViewById(R.id.et_backlog_presensi);
-         task = findViewById(R.id.et_task_presensi);
-         note = findViewById(R.id.et_note_presensi);
-         submit = findViewById(R.id.btn_submit_presensi);
+    public void init() {
+        rg = findViewById(R.id.rg_status);
+        backlog = findViewById(R.id.et_backlog_presensi);
+        task = findViewById(R.id.et_task_presensi);
+        note = findViewById(R.id.et_note_presensi);
+        submit = findViewById(R.id.btn_submit_presensi);
     }
 }

@@ -31,7 +31,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/nama" />
+                android:hint="@string/nama"
+                android:id="@+id/et_nama_update_profil"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -42,9 +43,11 @@
             android:layout_marginRight="@dimen/marginLeft_editProfil_et">
 
             <EditText
+                android:id="@+id/et_tanggal_update_profil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/tanggal_lahir" />
+                android:hint="@string/tanggal_lahir"
+                />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -55,6 +58,7 @@
             android:layout_marginRight="@dimen/marginLeft_editProfil_et">
 
             <EditText
+                android:id="@+id/et_bidang_update_profil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/bidang_developer" />
@@ -68,6 +72,7 @@
             android:layout_marginRight="@dimen/marginLeft_editProfil_et">
 
             <EditText
+                android:id="@+id/et_email_update_profil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/email" />
@@ -81,13 +86,52 @@
             android:layout_marginRight="@dimen/marginLeft_editProfil_et">
 
             <EditText
+                android:id="@+id/et_nohp_update_profil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/nomor_hp" />
 
         </android.support.design.widget.TextInputLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/cardview_dark_background"
+            android:layout_margin="@dimen/marginLeft_editProfil_et"
+            android:layout_marginLeft="@dimen/marginLeft_editProfil_et"
+            android:layout_marginRight="@dimen/marginLeft_editProfil_et"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/marginLeft_editProfil_et"
+            android:layout_marginRight="@dimen/marginLeft_editProfil_et">
+
+            <EditText
+                android:id="@+id/et_pswdbaru_update_profil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password Baru"
+                android:inputType="textPassword"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/marginLeft_editProfil_et"
+            android:layout_marginRight="@dimen/marginLeft_editProfil_et">
+
+            <EditText
+                android:id="@+id/et_retypepswd_update_profil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ketik Ulang Password"
+                android:inputType="textPassword"/>
+
+        </android.support.design.widget.TextInputLayout>
 
         <Button
+            android:id="@+id/btn_submit_edit_profil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/marginLeft_editProfil_et"

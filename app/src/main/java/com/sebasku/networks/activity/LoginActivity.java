@@ -74,10 +74,12 @@ public class LoginActivity extends AppCompatActivity {
                     User responsesId = response.body().getUser();
                     User responsesNama = response.body().getUser();
                     User responsesPosisi = response.body().getUser();
+                    User responsesNoHp = response.body().getUser();
                     Token responsesToken = response.body().getToken();
                     String token = responsesToken.getAccessToken();
                     String id = responsesId.getId();
                     String email = responsesId.getEmail();
+                    String noHp = responsesNoHp.getNoHp();
                     String nama = responsesNama.getNama();
                     String posisi = responsesPosisi.getPosisi();
                     session.createPosisiSession(posisi);
@@ -85,10 +87,12 @@ public class LoginActivity extends AppCompatActivity {
                     session.createEmailSession(email);
                     session.createLoginSession(token);
                     session.createNamaSession(nama);
+                    session.createNoHpSession(noHp);
                     Toast.makeText(LoginActivity.this, id, Toast.LENGTH_SHORT).show();
                     Toast.makeText(LoginActivity.this, token, Toast.LENGTH_SHORT).show();
                     Toast.makeText(LoginActivity.this, email, Toast.LENGTH_SHORT).show();
                     Toast.makeText(LoginActivity.this, nama, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, noHp, Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(LoginActivity.this, MenuActivity.class);
                     startActivity(i);
                 } else {

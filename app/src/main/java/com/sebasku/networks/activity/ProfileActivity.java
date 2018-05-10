@@ -21,6 +21,8 @@ import retrofit2.Response;
 public class ProfileActivity extends AppCompatActivity {
     Button edit;
     TextView mNama,mPosisi,mEmail,mHp;
+    SessionManager session;
+    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +53,11 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void getProfile() {
-        SessionManager session = new SessionManager(getApplicationContext());
-        String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MjM4MzI4MjEsImlhdCI6MTUyMzIzMjgyMSwic3ViIjoiNWFjOGI3M2JhMzY2OTQxMTk2YjE1ZDRkIn0.rPWFhWY5xUOl19PT2v9b1HOXeAE2Y2VpdH48evuYctw";
-        //String token = session.getAccesToken().toString();
-        Profile profile = new Profile(token);
-        Call<ResponseProfile> call = UtilsApi.getAPIService().getProfile(token);
+        session = new SessionManager(getApplicationContext());
+        token = session.getAccesToken();
+        String tokenize = "Bearer "+token;
+        Toast.makeText(ProfileActivity.this,"INI TOKENNN :"+token,Toast.LENGTH_SHORT).show();
+        Call<ResponseProfile> call = UtilsApi.getAPIService().getProfile(tokenize);
 
         call.enqueue(new Callback<ResponseProfile>() {
             @Override
@@ -73,7 +75,8 @@ public class ProfileActivity extends AppCompatActivity {
                     mEmail.setText(email);
                     mHp.setText(no);
 
-                } else {
+                }
+                else {
                     Toast.makeText(ProfileActivity.this, "check your Email or Password", Toast.LENGTH_SHORT).show();
                 }
             }
