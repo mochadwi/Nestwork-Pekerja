@@ -1,5 +1,7 @@
 package com.sebasku.networks.api;
 
+import com.sebasku.networks.apimodel.CekLoginForm;
+import com.sebasku.networks.apimodel.ChangePasswordForm;
 import com.sebasku.networks.apimodel.ProfileUpdateForm;
 import com.sebasku.networks.apimodel.RequestCutiForm;
 import com.sebasku.networks.apimodel.LoginForm;
@@ -21,6 +23,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -58,8 +61,12 @@ public interface BaseApiService {
     @GET("api/company/companyprofil")
     Call<List<ResponseCompanyProfile>>getCompanyProfile(@Header("Authorization") String Authorization);
 
-    @PUT("api/users/{id}")
+    @PATCH("api/users/{id}")
     Call<ResponseUpdateProfil> updateProfil(@Header("Authorization") String Authorization,@Path("id") String id, @Body ProfileUpdateForm profil);
 
+    @POST("api/auth/login")
+    Call<ResponseLogin> cekLogin(@Body CekLoginForm login);
 
+    @PATCH("api/users/{id}")
+    Call<ResponseUpdateProfil> updatePass(@Header("Authorization") String Authorization, @Path("id") String id, @Body ChangePasswordForm profil);
 }

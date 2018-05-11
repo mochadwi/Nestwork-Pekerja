@@ -34,7 +34,8 @@
         <activity
             android:name=".activity.SlipGajiActivity"
             android:theme="@style/AppThemeNoActionBar" />
-        <activity android:name=".activity.ProfileActivity"></activity>
+        <activity android:name=".activity.ProfileActivity" />
+        <activity android:name=".activity.EditPassword"></activity>
     </application>
 
 </manifest>

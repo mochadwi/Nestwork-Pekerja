@@ -1,36 +1,38 @@
 package com.sebasku.networks.activity;
 
+import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.sebasku.networks.R;
 import com.sebasku.networks.api.UtilsApi;
 import com.sebasku.networks.apimodel.ProfileUpdateForm;
-import com.sebasku.networks.apimodel.RequestCutiForm;
-import com.sebasku.networks.apimodel.ResponseAjukanCuti;
 import com.sebasku.networks.apimodel.ResponseUpdateProfil;
 import com.sebasku.networks.session.SessionManager;
 
 import retrofit2.Call;
+import java.util.Calendar;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class EditProfilActivity extends AppCompatActivity {
-
+public class EditProfilActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+    Calendar myCalendar;
     SessionManager session;
-    EditText nama, email, noHp, bidang, pswdBaru, retypePswd,tanggal;
-    String mNama, mEmail, mNoHp, mBidang, mPswdBaru, mRetypePswd,mTanggal;
+    EditText nama, email, noHp, bidang, tanggal;
+    String mNama, mEmail, mNoHp, mBidang, mTanggal;
     String getNama, getEmail, getNoHp, getBidang;
-    Button submit;
+    Button submit,changePassword;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profil);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -42,13 +44,32 @@ public class EditProfilActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mBidang = bidang.getText().toString();
+                Toast.makeText(EditProfilActivity.this,"Ini Bidanggg "+mBidang,Toast.LENGTH_SHORT).show();
                 mEmail = email.getText().toString();
                 mNama = nama.getText().toString();
                 mNoHp = noHp.getText().toString();
                 mTanggal = tanggal.getText().toString();
-                mPswdBaru = pswdBaru.getText().toString();
-                mRetypePswd = retypePswd.getText().toString();
-                updateProfil(mNama,mEmail,mBidang,mNoHp,mTanggal,mPswdBaru);
+                updateProfil(mNama,mEmail,mBidang,mNoHp,mTanggal);
+            }
+        });
+
+        tanggal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar c = Calendar.getInstance();
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                int day = c.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(EditProfilActivity.this, EditProfilActivity.this, year,month,day);
+                datePickerDialog.show();
+            }
+        });
+
+        changePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(EditProfilActivity.this,EditPassword.class);
+                startActivity(i);
             }
         });
     }
@@ -59,8 +80,8 @@ public class EditProfilActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    public void updateProfil(String mNama,String mEmail,String mBidang,String mNoHp,String mTanggal,String mPswdBaru) {
-        ProfileUpdateForm update = new ProfileUpdateForm(mNama,mEmail,mBidang,mNoHp,mTanggal,mPswdBaru);
+    public void updateProfil(String mNama,String mEmail,String mBidang,String mNoHp,String mTanggal) {
+        ProfileUpdateForm update = new ProfileUpdateForm(mNama,mEmail,mBidang,mNoHp,mTanggal);
         // User responsesId = response.body().getUser();
         session = new SessionManager(getApplicationContext());
         String token = session.getAccesToken();
@@ -74,7 +95,7 @@ public class EditProfilActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseUpdateProfil> call, Response<ResponseUpdateProfil> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "Suksesssssssssss Update", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Suksesssssssssss Updateeeeeeeeee", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getApplicationContext(), "check your Email or Password nyaaa", Toast.LENGTH_SHORT).show();
                 }
@@ -91,10 +112,9 @@ public class EditProfilActivity extends AppCompatActivity {
         nama = findViewById(R.id.et_nama_update_profil);
         email = findViewById(R.id.et_email_update_profil);
         noHp = findViewById(R.id.et_nohp_update_profil);
-        pswdBaru = findViewById(R.id.et_pswdbaru_update_profil);
-        retypePswd = findViewById(R.id.et_retypepswd_update_profil);
         tanggal = findViewById(R.id.et_tanggal_update_profil);
         submit = findViewById(R.id.btn_submit_edit_profil);
+        changePassword=findViewById(R.id.btn_stelan_privasi_akun);
     }
 
     public void setProfil(){
@@ -107,5 +127,18 @@ public class EditProfilActivity extends AppCompatActivity {
         email.setText(getEmail);
         nama.setText(getNama);
         noHp.setText(getNoHp);
+    }
+
+    @Override
+    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+        int yearFinal = i;
+        int monthFinal = i1+1;
+        int dayFinal = i2;
+        tanggal.setText(""+dayFinal+"-"+monthFinal+"-"+yearFinal);
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 }

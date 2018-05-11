@@ -51,6 +51,7 @@ public class RiwayatCutiAdapter extends RecyclerView.Adapter<RiwayatCutiAdapter.
         //holder.tlAkhirCuti.setText("Akhir Cuti : ");
         holder.keterangan.setText(mCurrent.getKeterangan());
         //holder.tlKet.setText("Keterangan : ");
+
     }
 
     //untuk menghitung jumlah data yang ada pada list

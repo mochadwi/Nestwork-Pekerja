@@ -1,25 +1,30 @@
 package com.sebasku.networks.fragment;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.sebasku.networks.R;
+import com.sebasku.networks.activity.EditProfilActivity;
 import com.sebasku.networks.api.UtilsApi;
 import com.sebasku.networks.apimodel.RequestCutiForm;
 import com.sebasku.networks.apimodel.ResponseAjukanCuti;
 import com.sebasku.networks.session.SessionManager;
 
+import java.util.Calendar;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RequestCutiFragment extends Fragment {
+public class RequestCutiFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
     View viewRequestCuti;
     Button requestCuti;
     EditText awalCuti, akhirCuti, keterangan, email;
@@ -43,6 +48,30 @@ public class RequestCutiFragment extends Fragment {
                 String mEmail = session.getEmail();
                 saveCuti(mEmail,nama, mAwalCuti, mAkhirCuti, mKeterangan,respons,status);
 
+            }
+        });
+
+        awalCuti.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar c = Calendar.getInstance();
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                int day = c.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), RequestCutiFragment.this, year,month,day);
+                datePickerDialog.show();
+            }
+        });
+
+        akhirCuti.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar c = Calendar.getInstance();
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                int day = c.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), RequestCutiFragment.this, year,month,day);
+                datePickerDialog.show();
             }
         });
 
@@ -82,4 +111,16 @@ public class RequestCutiFragment extends Fragment {
             }
         });
     }
+
+    @Override
+    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+        int yearFinal = i;
+        int monthFinal = i1+1;
+        int dayFinal = i2;
+        awalCuti.setText(""+dayFinal+"-"+monthFinal+"-"+yearFinal);
+        akhirCuti.setText(""+dayFinal+"-"+monthFinal+"-"+yearFinal);
+    }
+
+
+
 }

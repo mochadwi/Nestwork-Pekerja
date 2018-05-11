@@ -7,21 +7,11 @@ package com.sebasku.networks.apimodel;
 public class RequestCutiForm {
     private String email;
     private String nama;
-    private String awalCuti;
-    private String akhirCuti;
+    private String awal_cuti;
+    private String akhir_cuti;
     private String keterangan;
     private String respons;
     private String status;
-
-    public RequestCutiForm(String email, String nama, String awalCuti, String akhirCuti, String keterangan, String respons, String status) {
-        this.email = email;
-        this.nama = nama;
-        this.awalCuti = awalCuti;
-        this.akhirCuti = akhirCuti;
-        this.keterangan = keterangan;
-        this.respons = respons;
-        this.status = status;
-    }
 
     public String getEmail() {
         return email;
@@ -39,20 +29,20 @@ public class RequestCutiForm {
         this.nama = nama;
     }
 
-    public String getAwalCuti() {
-        return awalCuti;
+    public String getAwal_cuti() {
+        return awal_cuti;
     }
 
-    public void setAwalCuti(String awalCuti) {
-        this.awalCuti = awalCuti;
+    public void setAwal_cuti(String awal_cuti) {
+        this.awal_cuti = awal_cuti;
     }
 
-    public String getAkhirCuti() {
-        return akhirCuti;
+    public String getAkhir_cuti() {
+        return akhir_cuti;
     }
 
-    public void setAkhirCuti(String akhirCuti) {
-        this.akhirCuti = akhirCuti;
+    public void setAkhir_cuti(String akhir_cuti) {
+        this.akhir_cuti = akhir_cuti;
     }
 
     public String getKeterangan() {
@@ -77,5 +67,17 @@ public class RequestCutiForm {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public RequestCutiForm(String email, String nama, String awal_cuti, String akhir_cuti, String keterangan, String respons, String status) {
+        this.email = email;
+        this.nama = nama;
+        this.awal_cuti = awal_cuti;
+        this.akhir_cuti = akhir_cuti;
+        this.keterangan = keterangan;
+        this.respons = respons;
+        this.status = status;
+
+
     }
 }

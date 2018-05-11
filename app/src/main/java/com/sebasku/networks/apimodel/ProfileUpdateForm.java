@@ -5,22 +5,19 @@ package com.sebasku.networks.apimodel;
  */
 
 public class ProfileUpdateForm {
-    /*mNama,mEmail,mBidang,mNoHp,mTanggal,mPswdBaru*/
 
     private String nama;
     private String email;
-    private String bidang;
+    private String posisi;
     private String noHp;
-    private String tanggal;
-    private String password;
+    private String tanggalLahir;
 
-    public ProfileUpdateForm(String nama, String email, String bidang, String noHp, String tanggal, String password) {
+    public ProfileUpdateForm(String nama, String email, String posisi, String noHp, String tanggalLahir) {
         this.nama = nama;
         this.email = email;
-        this.bidang = bidang;
+        this.posisi = posisi;
         this.noHp = noHp;
-        this.tanggal = tanggal;
-        this.password = password;
+        this.tanggalLahir = tanggalLahir;
     }
 
     public String getNama() {
@@ -39,12 +36,12 @@ public class ProfileUpdateForm {
         this.email = email;
     }
 
-    public String getBidang() {
-        return bidang;
+    public String getPosisi() {
+        return posisi;
     }
 
-    public void setBidang(String bidang) {
-        this.bidang = bidang;
+    public void setPosisi(String posisi) {
+        this.posisi = posisi;
     }
 
     public String getNoHp() {
@@ -55,20 +52,12 @@ public class ProfileUpdateForm {
         this.noHp = noHp;
     }
 
-    public String getTanggal() {
-        return tanggal;
+    public String getTanggalLahir() {
+        return tanggalLahir;
     }
 
-    public void setTanggal(String tanggal) {
-        this.tanggal = tanggal;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setTanggalLahir(String tanggalLahir) {
+        this.tanggalLahir = tanggalLahir;
     }
 }
 
