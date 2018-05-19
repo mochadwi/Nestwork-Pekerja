@@ -15,14 +15,30 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Silakan isi Form Presensi"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="25sp"
+                android:layout_marginBottom="2dp"/>
+
+            <TextView
+                android:id="@+id/tv_today_tgl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="2dp"
                 android:text="21"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="@dimen/textSize_presensi_tvTgl" />
+                android:textSize="15sp"
+                android:layout_marginBottom="20dp"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -30,28 +46,6 @@
                 android:layout_marginTop="@dimen/marginTop_presensi_tv"
                 android:orientation="vertical">
 
-
-                <TextView
-                    android:id="@+id/txt_today"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/today"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="@dimen/textSize_presensi_tvToday" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/bulan"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="@dimen/txtSize_presensi_tvBulan" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tahun"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="@dimen/txtSize_presensi_tahun" />
             </LinearLayout>
         </LinearLayout>
 

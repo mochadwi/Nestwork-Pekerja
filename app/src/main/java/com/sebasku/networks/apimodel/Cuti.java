@@ -18,77 +18,89 @@ public class Cuti {
 
     @SerializedName("id")
     @Expose
-    private String idCuti;
+    private String id;
     @SerializedName("email")
     @Expose
-    private String emailCuti;
+    private String email;
     @SerializedName("awal_cuti")
     @Expose
-    private String awalCuti;
+    private String awal_cuti;
     @SerializedName("akhir_cuti")
     @Expose
-    private String akhirCuti;
+    private String akhir_cuti;
     @SerializedName("keterangan")
     @Expose
-    private String keteranganCuti;
+    private String keterangan;
     @SerializedName("status")
     @Expose
-    private String statusCuti;
+    private String status;
+    @SerializedName("respons")
+    @Expose
+    private String respons;
 
-    public Cuti(String idCuti, String emailCuti, String awalCuti, String akhirCuti, String keteranganCuti, String statusCuti) {
-        this.idCuti = idCuti;
-        this.emailCuti = emailCuti;
-        this.awalCuti = awalCuti;
-        this.akhirCuti = akhirCuti;
-        this.keteranganCuti = keteranganCuti;
-        this.statusCuti = statusCuti;
+    public Cuti(String id, String email, String awal_cuti, String akhir_cuti, String keterangan, String status, String respons) {
+        this.id = id;
+        this.email = email;
+        this.awal_cuti = awal_cuti;
+        this.akhir_cuti = akhir_cuti;
+        this.keterangan = keterangan;
+        this.status = status;
+        this.respons = respons;
     }
 
-    public String getIdCuti() {
-        return idCuti;
+    public String getId() {
+        return id;
     }
 
-    public void setIdCuti(String idCuti) {
-        this.idCuti = idCuti;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getEmailCuti() {
-        return emailCuti;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmailCuti(String emailCuti) {
-        this.emailCuti = emailCuti;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getAwalCuti() {
-        return awalCuti;
+    public String getAwal_cuti() {
+        return awal_cuti;
     }
 
-    public void setAwalCuti(String awalCuti) {
-        this.awalCuti = awalCuti;
+    public void setAwal_cuti(String awal_cuti) {
+        this.awal_cuti = awal_cuti;
     }
 
-    public String getAkhirCuti() {
-        return akhirCuti;
+    public String getAkhir_cuti() {
+        return akhir_cuti;
     }
 
-    public void setAkhirCuti(String akhirCuti) {
-        this.akhirCuti = akhirCuti;
+    public void setAkhir_cuti(String akhir_cuti) {
+        this.akhir_cuti = akhir_cuti;
     }
 
-    public String getKeteranganCuti() {
-        return keteranganCuti;
+    public String getKeterangan() {
+        return keterangan;
     }
 
-    public void setKeteranganCuti(String keteranganCuti) {
-        this.keteranganCuti = keteranganCuti;
+    public void setKeterangan(String keterangan) {
+        this.keterangan = keterangan;
     }
 
-    public String getStatusCuti() {
-        return statusCuti;
+    public String getStatus() {
+        return status;
     }
 
-    public void setStatusCuti(String statusCuti) {
-        this.statusCuti = statusCuti;
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getRespons() {
+        return respons;
+    }
+
+    public void setRespons(String respons) {
+        this.respons = respons;
     }
 }

@@ -68,9 +68,7 @@ public class ResponseRiwayatCuti {
     }
 
 
-    public String getRespons() {
-        return respons;
-    }
+    public String getRespons() { return respons; }
 
     public void setRespons(String respons) {
         this.respons = respons;

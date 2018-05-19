@@ -3,9 +3,13 @@ package com.sebasku.networks.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sebasku.networks.R;
 import com.sebasku.networks.session.SessionManager;
@@ -13,14 +17,21 @@ import com.sebasku.networks.session.SessionManager;
 public class MenuActivity extends AppCompatActivity {
 
     ImageView userFoto,slipGaji,Cuti,infoPerusahaan,presensiHarian;
-    TextView logout;
+    TextView job,nama;
+    SessionManager session;
+    String mNama,mPosisi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        session = new SessionManager(getApplicationContext());
         initializedObject();
         actionClicked();
+        mNama = session.getNama();
+        mPosisi = session.getPosisi();
+        job.setText(mPosisi);
+        nama.setText(mNama);
     }
 
     public void initializedObject(){
@@ -29,7 +40,8 @@ public class MenuActivity extends AppCompatActivity {
         Cuti = findViewById(R.id.ajukan_cuti);
         infoPerusahaan = findViewById(R.id.informasi_perusahaan);
         presensiHarian = findViewById(R.id.presensi_harian);
-        logout = findViewById(R.id.tv_logout);
+        job = findViewById(R.id.job_role);
+        nama = findViewById(R.id.nama_user);
 
     }
 
@@ -73,12 +85,32 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SessionManager sessionlogout = new SessionManager(getApplicationContext());
-                sessionlogout.logoutUser();
-            }
-        });
+    }
+
+    public void logoutUser(){
+        session = new SessionManager(getApplicationContext());
+        session.logoutUser();
+        String token = session.getAccesToken();
+        Toast.makeText(MenuActivity.this, token, Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_logout, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                logoutUser();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

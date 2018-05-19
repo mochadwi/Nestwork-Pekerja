@@ -3,6 +3,8 @@
     package="com.sebasku.networks">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -27,7 +29,7 @@
         <activity android:name=".activity.PresensiActivity" />
         <activity
             android:name=".activity.MenuActivity"
-            android:theme="@style/AppThemeNoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.CutiActivity"
             android:theme="@style/AppThemeNoActionBar" />

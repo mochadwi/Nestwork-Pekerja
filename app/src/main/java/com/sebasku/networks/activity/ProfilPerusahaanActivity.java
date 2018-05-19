@@ -32,14 +32,12 @@ public class ProfilPerusahaanActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Profil");
         session = new SessionManager(getApplicationContext());
         token = session.getAccesToken();
-        Toast.makeText(ProfilPerusahaanActivity.this,token, Toast.LENGTH_SHORT).show();
         init();
 
         Call<List<ResponseCompanyProfile>> call = UtilsApi.getAPIService().getCompanyProfile("Bearer "+token);
         call.enqueue(new Callback<List<ResponseCompanyProfile>>() {
             @Override
             public void onResponse(Call<List<ResponseCompanyProfile>> call, Response<List<ResponseCompanyProfile>> response) {
-                Toast.makeText(ProfilPerusahaanActivity.this, "Sedang Get Riwayat", Toast.LENGTH_SHORT).show();
                 if (response.code()==201){
                         List<ResponseCompanyProfile> responsCompany = response.body();
                         String email = responsCompany.get(0).getEmail();

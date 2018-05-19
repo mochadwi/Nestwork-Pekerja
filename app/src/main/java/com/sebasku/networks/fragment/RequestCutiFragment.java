@@ -1,6 +1,8 @@
 package com.sebasku.networks.fragment;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,16 +11,21 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sebasku.networks.R;
 import com.sebasku.networks.activity.EditProfilActivity;
+import com.sebasku.networks.activity.LoginActivity;
+import com.sebasku.networks.activity.MenuActivity;
 import com.sebasku.networks.api.UtilsApi;
 import com.sebasku.networks.apimodel.RequestCutiForm;
 import com.sebasku.networks.apimodel.ResponseAjukanCuti;
 import com.sebasku.networks.session.SessionManager;
 
+import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,20 +36,34 @@ public class RequestCutiFragment extends Fragment implements DatePickerDialog.On
     Button requestCuti;
     EditText awalCuti, akhirCuti, keterangan, email;
     String mAwalCuti, mAkhirCuti, mKeterangan, mEmail;
+    TextView tgl;
+    int st;
     SessionManager session ;
+    private int mYearIni, mMonthIni, mDayIni, mYearIni2, mMonthIni2, mDayIni2;
+    private int sYearIni, sMonthIni, sDayIni, sYearIni2, sMonthIni2, sDayIni2;
+    static final int DATE_ID = 0;
+    Calendar C = Calendar.getInstance();
+    Calendar C1 = Calendar.getInstance();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         viewRequestCuti = inflater.inflate(R.layout.fragment_request_cuti, container, false);
         init();
+
+        String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+
+// textView is the TextView view that should display it
+        tgl.setText(currentDateTimeString);
+
         requestCuti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 mAwalCuti = awalCuti.getText().toString();
                 mAkhirCuti = akhirCuti.getText().toString();
                 mKeterangan = keterangan.getText().toString();
                 String respons = "0";
-                String status = "0";
+                String status = "3";
                 session = new SessionManager(getContext());
                 String nama = session.getNama();
                 String mEmail = session.getEmail();
@@ -51,6 +72,7 @@ public class RequestCutiFragment extends Fragment implements DatePickerDialog.On
             }
         });
 
+
         awalCuti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,6 +80,7 @@ public class RequestCutiFragment extends Fragment implements DatePickerDialog.On
                 int year = c.get(Calendar.YEAR);
                 int month = c.get(Calendar.MONTH);
                 int day = c.get(Calendar.DAY_OF_MONTH);
+                st=0;
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), RequestCutiFragment.this, year,month,day);
                 datePickerDialog.show();
             }
@@ -66,14 +89,16 @@ public class RequestCutiFragment extends Fragment implements DatePickerDialog.On
         akhirCuti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Calendar c = Calendar.getInstance();
-                int year = c.get(Calendar.YEAR);
-                int month = c.get(Calendar.MONTH);
-                int day = c.get(Calendar.DAY_OF_MONTH);
+                Calendar c1 = Calendar.getInstance();
+                int year = c1.get(Calendar.YEAR);
+                int month = c1.get(Calendar.MONTH);
+                int day = c1.get(Calendar.DAY_OF_MONTH);
+                st=1;
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), RequestCutiFragment.this, year,month,day);
                 datePickerDialog.show();
             }
         });
+
 
         return viewRequestCuti;
     }
@@ -83,6 +108,7 @@ public class RequestCutiFragment extends Fragment implements DatePickerDialog.On
         akhirCuti = (EditText) viewRequestCuti.findViewById(R.id.et_akhir_cuti);
         keterangan = (EditText) viewRequestCuti.findViewById(R.id.et_keterangan_cuti);
         requestCuti = (Button) viewRequestCuti.findViewById(R.id.btn_request_cuti);
+        tgl = viewRequestCuti.findViewById(R.id.tv_today_tglcuti);
     }
 
     public void saveCuti(String email,String nama, String awalCuti, String akhirCuti, String keterangan,String respons,String status) {
@@ -90,7 +116,7 @@ public class RequestCutiFragment extends Fragment implements DatePickerDialog.On
        // User responsesId = response.body().getUser();
         session = new SessionManager(getContext());
         String token = session.getAccesToken();
-        Toast.makeText(getActivity(), "ini token : "+token, Toast.LENGTH_SHORT).show();
+/*        Toast.makeText(getActivity(), "ini token : "+token, Toast.LENGTH_SHORT).show();*/
         String b = "Bearer ";
         String tokenize = b+token;
         Call<ResponseAjukanCuti> call = UtilsApi.getAPIService().addCuti(tokenize, cuti);
@@ -99,9 +125,13 @@ public class RequestCutiFragment extends Fragment implements DatePickerDialog.On
             @Override
             public void onResponse(Call<ResponseAjukanCuti> call, Response<ResponseAjukanCuti> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(getActivity(), "Suksesssssssssss post", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Sukses Ajukan Cuti", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(getActivity().getApplication(),MenuActivity.class);
+                    startActivity(i);
                 } else {
-                    Toast.makeText(getActivity(), "check your Email or Password nyaaa", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Silakan Login kembali", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(getActivity().getApplication(),LoginActivity.class);
+                    startActivity(i);
                 }
             }
 
@@ -117,10 +147,13 @@ public class RequestCutiFragment extends Fragment implements DatePickerDialog.On
         int yearFinal = i;
         int monthFinal = i1+1;
         int dayFinal = i2;
-        awalCuti.setText(""+dayFinal+"-"+monthFinal+"-"+yearFinal);
-        akhirCuti.setText(""+dayFinal+"-"+monthFinal+"-"+yearFinal);
+        if (st == 0){
+            awalCuti.setText(""+dayFinal+"-"+monthFinal+"-"+yearFinal);
+        }
+        else if (st == 1) {
+            akhirCuti.setText(""+dayFinal+"-"+monthFinal+"-"+yearFinal);
+        }
+
+/*        akhirCuti.setText(""+dayFinal+"-"+monthFinal+"-"+yearFinal);*/
     }
-
-
-
 }

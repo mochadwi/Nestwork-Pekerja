@@ -44,7 +44,6 @@ public class EditProfilActivity extends AppCompatActivity implements DatePickerD
             @Override
             public void onClick(View view) {
                 mBidang = bidang.getText().toString();
-                Toast.makeText(EditProfilActivity.this,"Ini Bidanggg "+mBidang,Toast.LENGTH_SHORT).show();
                 mEmail = email.getText().toString();
                 mNama = nama.getText().toString();
                 mNoHp = noHp.getText().toString();
@@ -86,7 +85,6 @@ public class EditProfilActivity extends AppCompatActivity implements DatePickerD
         session = new SessionManager(getApplicationContext());
         String token = session.getAccesToken();
         String id = session.getId();
-        Toast.makeText(EditProfilActivity.this, "ini token : "+token, Toast.LENGTH_SHORT).show();
         String b = "Bearer ";
         String tokenize = b+token;
         Call<ResponseUpdateProfil> call = UtilsApi.getAPIService().updateProfil(tokenize,id, update);
@@ -95,9 +93,13 @@ public class EditProfilActivity extends AppCompatActivity implements DatePickerD
             @Override
             public void onResponse(Call<ResponseUpdateProfil> call, Response<ResponseUpdateProfil> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "Suksesssssssssss Updateeeeeeeeee", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Sukses Edit Profil", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(EditProfilActivity.this,MenuActivity.class);
+                    startActivity(i);
                 } else {
-                    Toast.makeText(getApplicationContext(), "check your Email or Password nyaaa", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Silakan Login kembali", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(EditProfilActivity.this,LoginActivity.class);
+                    startActivity(i);
                 }
             }
 

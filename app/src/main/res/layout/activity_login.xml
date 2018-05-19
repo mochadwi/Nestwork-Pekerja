@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/marginLeft_login"
             android:layout_marginTop="@dimen/marginTop_login_tv"
-            android:text="Please log in to access NetsWork"
+            android:text="Please log in to access NestWork"
             android:textColor="@color/colorSecondaryText"
             android:textSize="@dimen/textSize_login_tv" />
 

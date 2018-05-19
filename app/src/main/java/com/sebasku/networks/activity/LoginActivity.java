@@ -2,6 +2,7 @@ package com.sebasku.networks.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -88,11 +89,12 @@ public class LoginActivity extends AppCompatActivity {
                     session.createLoginSession(token);
                     session.createNamaSession(nama);
                     session.createNoHpSession(noHp);
-                    Toast.makeText(LoginActivity.this, id, Toast.LENGTH_SHORT).show();
+                    /*Snackbar.make(findViewById(R.id.rootView), "No internet connection", Snackbar.LENGTH_SHORT).show();*/
+/*                  Toast.makeText(LoginActivity.this, id, Toast.LENGTH_SHORT).show();
                     Toast.makeText(LoginActivity.this, token, Toast.LENGTH_SHORT).show();
                     Toast.makeText(LoginActivity.this, email, Toast.LENGTH_SHORT).show();
                     Toast.makeText(LoginActivity.this, nama, Toast.LENGTH_SHORT).show();
-                    Toast.makeText(LoginActivity.this, noHp, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, noHp, Toast.LENGTH_SHORT).show();*/
                     Intent i = new Intent(LoginActivity.this, MenuActivity.class);
                     startActivity(i);
                 } else {

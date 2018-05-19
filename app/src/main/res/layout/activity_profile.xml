@@ -18,11 +18,28 @@
             android:layout_height="@dimen/width_menu_ava"
             android:layout_gravity="center"
             android:layout_margin="@dimen/margin_editProvil_ava"
-            android:src="@drawable/henwickava"
+            android:src="@drawable/user"
             app:civ_border_color="@color/colorPrimary"
             app:civ_border_width="@dimen/borderWidth_menu" />
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/btn_upload_foto"
+            android:layout_width="30dp"
+            android:src="@drawable/ic_photo"
+            android:layout_height="30dp"
+            android:layout_marginTop="-40dp"
+            android:layout_marginLeft="170dp"/>
+
+<!--        <Button
+            android:id="@+id/btn_upload_foto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/button_2"
+            android:text="Upload"/>-->
+
         <TextView
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/nama"

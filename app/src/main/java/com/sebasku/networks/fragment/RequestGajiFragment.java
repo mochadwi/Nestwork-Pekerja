@@ -1,5 +1,6 @@
 package com.sebasku.networks.fragment;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +10,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.sebasku.networks.R;
+import com.sebasku.networks.activity.LoginActivity;
+import com.sebasku.networks.activity.MenuActivity;
 import com.sebasku.networks.api.UtilsApi;
 import com.sebasku.networks.apimodel.RequestGajiForm;
 import com.sebasku.networks.apimodel.ResponseAjukanSlipGaji;
@@ -26,12 +29,6 @@ public class RequestGajiFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         requestGaji = inflater.inflate(R.layout.fragment_request_gaji, container, false);
-
-
-/*        "email":"tsani@gmail.com",
-                "waktu":"08-02-1996",
-                "status":"0",
-                "gaji":"0"*/
         init();
         btnGaji.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,7 +40,6 @@ public class RequestGajiFragment extends Fragment {
                 String status = "0";
                 String gaji ="0";
                 saveGaji(email,waktu,status,gaji);
-
             }
         });
 
@@ -59,7 +55,7 @@ public class RequestGajiFragment extends Fragment {
         // User responsesId = response.body().getUser();
         session = new SessionManager(getContext());
         String token = session.getAccesToken();
-        Toast.makeText(getActivity(), "ini token : " + token, Toast.LENGTH_SHORT).show();
+/*        Toast.makeText(getActivity(), "ini token : " + token, Toast.LENGTH_SHORT).show();*/
         String b = "Bearer ";
         String tokenize = b + token;
         Call<ResponseAjukanSlipGaji> call = UtilsApi.getAPIService().addGaji(tokenize, gajihan);
@@ -68,9 +64,13 @@ public class RequestGajiFragment extends Fragment {
             @Override
             public void onResponse(Call<ResponseAjukanSlipGaji> call, Response<ResponseAjukanSlipGaji> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(getActivity(), "Sukses Mengajukan Gaji", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Sukses Ajukan Gaji", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(getActivity().getApplication(),MenuActivity.class);
+                    startActivity(i);
                 } else {
-                    Toast.makeText(getActivity(), "check Email dan Password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Silakan Login kembali", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(getActivity().getApplication(),LoginActivity.class);
+                    startActivity(i);
                 }
             }
 

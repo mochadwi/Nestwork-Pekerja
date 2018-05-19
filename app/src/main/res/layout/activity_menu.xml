@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="1.5"
         android:background="@drawable/gradient"
         android:orientation="vertical">
 
@@ -20,7 +20,7 @@
             android:layout_width="@dimen/width_menu_ava"
             android:layout_height="@dimen/width_menu_ava"
             android:layout_marginTop="@dimen/marginTop_menu_ava"
-            android:src="@drawable/henwickava"
+            android:src="@drawable/user"
             app:civ_border_color="@color/colorWhite"
             android:layout_gravity="center"
             app:civ_border_width="@dimen/borderWidth_menu" />
@@ -44,16 +44,6 @@
             android:textColor="@color/colorWhite" />
 
     </LinearLayout>
-    <TextView
-        android:id="@+id/tv_logout"
-        android:layout_marginTop="-20dp"
-        android:textSize="20sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginRight="20dp"
-        android:text="LOGOUT"
-        android:textColor="@color/colorWhite" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -85,7 +75,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/height_menu_image"
                         android:layout_weight="2"
-                        android:padding="@dimen/menu_image_padding"
+                        android:padding="20dp"
                         android:src="@drawable/ic_presensi" />
 
                     <TextView
@@ -116,7 +106,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/height_menu_image"
                         android:layout_weight="2"
-                        android:padding="@dimen/menu_image_padding"
+                        android:padding="20dp"
                         android:src="@drawable/ic_cuti" />
 
                     <TextView
@@ -155,7 +145,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/height_menu_image"
                         android:layout_weight="2"
-                        android:padding="@dimen/menu_image_padding"
+                        android:padding="20dp"
                         android:src="@drawable/ic_slip" />
 
                     <TextView
@@ -186,7 +176,7 @@
                         android:layout_height="@dimen/height_menu_image"
                         android:layout_gravity="center"
                         android:layout_weight="2"
-                        android:padding="@dimen/menu_image_padding"
+                        android:padding="20dp"
                         android:src="@drawable/ic_informasi" />
 
                     <TextView

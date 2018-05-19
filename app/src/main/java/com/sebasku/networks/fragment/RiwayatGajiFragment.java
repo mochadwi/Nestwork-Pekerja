@@ -1,5 +1,6 @@
 package com.sebasku.networks.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.sebasku.networks.R;
+import com.sebasku.networks.activity.LoginActivity;
 import com.sebasku.networks.adapter.RiwayatCutiAdapter;
 import com.sebasku.networks.adapter.RiwayatGajiAdapter;
 import com.sebasku.networks.api.UtilsApi;
@@ -63,13 +65,15 @@ public class RiwayatGajiFragment extends Fragment {
                             mAdapter.notifyDataSetChanged();
                     }
                 } else {
-                    Toast.makeText(getActivity(), "not correct", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getActivity(), "Silakan Login kembali", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(getActivity(),LoginActivity.class);
+                    startActivity(i);
                 }
             }
 
             @Override
             public void onFailure(Call<List<ResponseRiwayatGaji>> call, Throwable t) {
-                Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "Error connection", Toast.LENGTH_SHORT).show();
             }
         });
 

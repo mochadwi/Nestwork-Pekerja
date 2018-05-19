@@ -46,7 +46,6 @@ public class EditPassword extends AppCompatActivity {
         session = new SessionManager(getApplicationContext());
         String token = session.getAccesToken();
         String id = session.getId();
-        Toast.makeText(EditPassword.this, "ini token : " + token, Toast.LENGTH_SHORT).show();
         String b = "Bearer ";
         String tokenize = b + token;
         Call<ResponseUpdateProfil> call = UtilsApi.getAPIService().updatePass(tokenize, id, update);
@@ -56,8 +55,11 @@ public class EditPassword extends AppCompatActivity {
             public void onResponse(Call<ResponseUpdateProfil> call, Response<ResponseUpdateProfil> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(getApplicationContext(), "Sukses Update Password", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(EditPassword.this,MenuActivity.class);
                 } else {
-                    Toast.makeText(getApplicationContext(), "Gagal Update Password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Silakan Login kembali", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(EditPassword.this,LoginActivity.class);
+                    startActivity(i);
                 }
             }
 

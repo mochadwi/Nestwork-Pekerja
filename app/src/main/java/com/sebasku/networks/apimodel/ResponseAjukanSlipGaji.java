@@ -5,10 +5,13 @@ import com.google.gson.annotations.SerializedName;
 
 public class ResponseAjukanSlipGaji {
 
-    /*    	"email":"tsani@gmail.com",
-                "waktu":"08-02-1996",
-                "status":"0",
-                "gaji":"0"*/
+
+/*        "id": "5afef61b432d441465a048ad",
+                "email": "faridpadilahhhh@gmail.com",
+                "waktu": "1996-08-01T17:00:00.000Z",
+                "status": "0",
+                "gaji": 0,
+                "jumlahTask": 0*/
 
     @SerializedName("email")
     @Expose
@@ -22,12 +25,16 @@ public class ResponseAjukanSlipGaji {
     @SerializedName("gaji")
     @Expose
     private String gaji;
+    @SerializedName("jumlahTask")
+    @Expose
+    private String jumlahTask;
 
-    public ResponseAjukanSlipGaji(String email, String waktu, String status, String gaji) {
+    public ResponseAjukanSlipGaji(String email, String waktu, String status, String gaji, String jumlahTask) {
         this.email = email;
         this.waktu = waktu;
         this.status = status;
         this.gaji = gaji;
+        this.jumlahTask = jumlahTask;
     }
 
     public String getEmail() {
@@ -60,5 +67,13 @@ public class ResponseAjukanSlipGaji {
 
     public void setGaji(String gaji) {
         this.gaji = gaji;
+    }
+
+    public String getJumlahTask() {
+        return jumlahTask;
+    }
+
+    public void setJumlahTask(String jumlahTask) {
+        this.jumlahTask = jumlahTask;
     }
 }

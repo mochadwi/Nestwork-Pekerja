@@ -1,5 +1,6 @@
 package com.sebasku.networks.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sebasku.networks.R;
@@ -17,6 +19,9 @@ import com.sebasku.networks.apimodel.RequestPresentForm;
 import com.sebasku.networks.apimodel.ResponseAjukanCuti;
 import com.sebasku.networks.apimodel.ResponsePresent;
 import com.sebasku.networks.session.SessionManager;
+
+import java.text.DateFormat;
+import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,6 +36,7 @@ public class PresensiActivity extends AppCompatActivity {
     String mRb;
     SessionManager session;
     String mStatus;
+    TextView tgl, bulan, hari;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,10 @@ public class PresensiActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Presensi");
         init();
+
+        String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+        tgl.setText(currentDateTimeString);
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,13 +64,17 @@ public class PresensiActivity extends AppCompatActivity {
                 } else if (mRb.equals("Obstacle")) {
                     mStatus = "2";
                 }
-                Toast.makeText(PresensiActivity.this, mStatus, Toast.LENGTH_SHORT).show();
                 mBacklog = backlog.getText().toString();
                 mTask = task.getText().toString();
                 mNote = note.getText().toString();
                 nama = session.getNama();
                 email = session.getEmail();
-                savePresent(email, nama, mBacklog, mStatus, mTask, mNote);
+                if(mBacklog != null && mTask != null && mNote != null &&  nama != null && email != null){
+                    savePresent(email, nama, mBacklog, mStatus, mTask, mNote);
+                }
+                else {
+                    Toast.makeText(PresensiActivity.this,"Silakan Isi Semua Form",Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -70,7 +84,6 @@ public class PresensiActivity extends AppCompatActivity {
         // User responsesId = response.body().getUser();
         session = new SessionManager(getApplicationContext());
         String token = session.getAccesToken();
-        Toast.makeText(PresensiActivity.this, "ini token : " + token, Toast.LENGTH_SHORT).show();
         String b = "Bearer ";
         String tokenize = b + token;
         Call<ResponsePresent> call = UtilsApi.getAPIService().addPresent(tokenize, present);
@@ -79,9 +92,13 @@ public class PresensiActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponsePresent> call, Response<ResponsePresent> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(PresensiActivity.this, "Suksesssssssssss post", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Sukses Mengajukan Presensi", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(PresensiActivity.this,MenuActivity.class);
+                    startActivity(i);
                 } else {
-                    Toast.makeText(PresensiActivity.this, "check your Email or Password nyaaa", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Silakan Login kembali", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(PresensiActivity.this,LoginActivity.class);
+                    startActivity(i);
                 }
             }
 
@@ -102,6 +119,7 @@ public class PresensiActivity extends AppCompatActivity {
     }
 
     public void init() {
+        tgl = findViewById(R.id.tv_today_tgl);
         rg = findViewById(R.id.rg_status);
         backlog = findViewById(R.id.et_backlog_presensi);
         task = findViewById(R.id.et_task_presensi);
